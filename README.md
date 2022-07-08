@@ -61,15 +61,14 @@ It contains 3 segments:
 
 Execution of playbook can be viewed at : https://www.youtube.com/watch?v=Lns4th54zPM&t=106s
 
-![image](https://user-images.githubusercontent.com/38517925/114188843-28cae980-9967-11eb-9fdb-89197217d8b7.png)
-![image](https://user-images.githubusercontent.com/38517925/114188938-4304c780-9967-11eb-820a-36cd2a33ec91.png)
-![image](https://user-images.githubusercontent.com/38517925/114189070-692a6780-9967-11eb-9777-a9bcaf81a3c6.png)
-![image](https://user-images.githubusercontent.com/38517925/114189125-76dfed00-9967-11eb-8bc3-00ba2fa3c75a.png)
-![image](https://user-images.githubusercontent.com/38517925/114189164-82331880-9967-11eb-9daf-9091c4847f17.png)
-![image](https://user-images.githubusercontent.com/38517925/114189224-970fac00-9967-11eb-91ef-717d9a9780c6.png)
-![image](https://user-images.githubusercontent.com/38517925/114189803-3a60c100-9968-11eb-99ad-7b97a39e988a.png)
-![image](https://user-images.githubusercontent.com/38517925/114189869-4cdafa80-9968-11eb-9bc7-c5f3f7203ad8.png)
-![image](https://user-images.githubusercontent.com/38517925/114189904-57958f80-9968-11eb-8600-bfadaa100a72.png)
+![image](https://user-images.githubusercontent.com/38517925/177982654-a510fa76-8995-40a6-ba09-3716dcd92e16.png)
+![image](https://user-images.githubusercontent.com/38517925/177982712-28232558-6ba8-4af2-8099-e11d5c67122e.png)
+![image](https://user-images.githubusercontent.com/38517925/177982760-0bdfe920-a76f-4bef-9087-ac7b111750ed.png)
+![image](https://user-images.githubusercontent.com/38517925/177982809-6bd6e155-41e5-4014-bc3c-5ba737bdf959.png)
+![image](https://user-images.githubusercontent.com/38517925/177982867-7c9db669-8236-468b-94bb-4faf8a8024e7.png)
+![image](https://user-images.githubusercontent.com/38517925/177983046-0019ec4b-3138-4749-90f9-dd8a954b907d.png)
+![image](https://user-images.githubusercontent.com/38517925/177983408-64caa9f4-9108-4b0d-90b1-36e9fc415d52.png)
+
 
 
 AUTHOR
