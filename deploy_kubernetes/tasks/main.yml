@@ -13,13 +13,13 @@
       path: swap
       state: absent
 
-  - name: 2.5 Making sure that firewalld is running
+  - name: 3 Making sure that firewalld is running
     service:
       name: firewalld
       state: started
       enabled: true
 
-  - name: 3. Setting up firewall rules for master
+  - name: 4. Setting up firewall rules for master
     firewalld:
       port: "{{ item }}/tcp"
       permanent: yes
@@ -29,7 +29,7 @@
       - "{{ FIREWALL_PORTS_MASTER }}"
     when: KUBERNETES_MASTER in inventory_hostname
 
-  - name: 4. Setting up firewall rules for workers
+  - name: 5. Setting up firewall rules for workers
     firewalld:
       port: "{{ item }}/tcp"
       permanent: yes
@@ -39,11 +39,6 @@
       - "{{ FIREWALL_PORTS_WORKER }}"
     when: KUBERNETES_MASTER not in inventory_hostname
 
-  - name: 5. Installing the traffic control utility package
-    yum: 
-      name: iproute-tc
-      state: latest
-
   - name: 6. Create a modules configuration file for Kubernetes
     copy:
       src: k8s.conf
@@ -52,6 +47,7 @@
   - name: 7. netfilter module checking
     shell: lsmod | egrep -i "^br_netfilter|^overlay" | wc -l
     register: netfilermodule
+    changed_when: false
 
   - name: 8. Installing | overlay, br_netfilter | module
     shell: modprobe {{ item }}
@@ -75,38 +71,42 @@
   - name: 11. Setup the crio repository
     shell: "{{ item }}"
     loop:
-    - "curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_8/devel:kubic:libcontainers:stable.repo"
-    - "curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}/CentOS_8/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}.repo" 
-  
-  - name: 12. Deploy CRIO package
+    - "curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo"
+    - "curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:{{ CRIOVERSION }}.repo" 
+    changed_when: false
+ 
+  - name: 12. Deploying additional repository if OS is Redhat
+    copy:
+      src: extraRepo
+      dest: /etc/yum.repos.d/extra.repo
+    when: ansible_distribution == 'RedHat' and ansible_distribution_major_version != '8'
+
+  - name: 13. Deploy CRIO package
     yum:
       name: cri-o
       state: latest
 
-  - name: 13. Start the CRIO service
+  - name: 14. Start the CRIO service
     service:
       name: cri-o
       state: started
       enabled: true
  
-  - name: 14. Setting up required Kubernetes repository
+  - name: 15. Setting up required Kubernetes repository
     copy:
       src: kubernetesRepo
       dest: /etc/yum.repos.d/kubernetes.repo
 
-  - name: 15. Deploying additional repository if OS is Redhat
-    copy:
-      src: extraRepo
-      dest: /etc/yum.repos.d/extra.repo
-    when: ansible_distribution == 'RedHat' and ansible_distribution_major_version != '8'
-  
   - name: 16. Install | KUBERNETES | related packages    
     yum:
         name: "{{ KUBERNET_PACKAGES }}"
         state: present
         disable_excludes: kubernetes
+  
+  - name: 17. Notifying changes to systemd
+    shell: systemctl daemon-reload
 
-  - name: 17. Starting | kubelet| service
+  - name: 18. Starting | kubelet| service
     service: 
       name: "{{ item }}"
       state: started
@@ -114,19 +114,19 @@
     with_items:
     - "{{ KUBERNET_SERVICES }}"
 
-  - name: 18. Check if Kubernetes has already been initialized.
+  - name: 19. Check if Kubernetes has already been initialized.
     stat:
       path: /etc/kubernetes/admin.conf
     register: kubernetes_init_stat
 
-  - name: 19. [ ------------------------ | Master Setup | ----------------------
+  - name: 20. [ ------------------------ | Master Setup | ----------------------
     include_tasks: k8-master-setup.yml
     when: KUBERNETES_MASTER in inventory_hostname
 
-  - name: 20. [ ------------------------ | Nodes/Worker Setup | ----------------
+  - name: 21. [ ------------------------ | Nodes/Worker Setup | ----------------
     include_tasks: k8-worker-setup.yml
     when: KUBERNETES_MASTER not in inventory_hostname
 
-  - name: 21. Ending with role deployment
+  - name: 22. Ending with role deployment
     debug:
       msg: "Kuberenetes deployment ended ... "

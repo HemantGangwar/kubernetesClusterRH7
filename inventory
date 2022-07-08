@@ -4,13 +4,13 @@
 # including the node which you want to use Kubernetes master
 
 # Add all nodes here which will be in cluster including master
-# kubmas
-# kubclient1
-# kubclient2
+kubmas7
+node71
+node72
 # Do not edit the group name as it is used as variable in Playbook 
 # keep your kubernetes master node name here as well
 # if already defined above
 
 [clustermaster]
-# kubmas
+kubmas7
 # Add your kubernetes master here
