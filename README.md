@@ -70,6 +70,10 @@ Execution of playbook can be viewed at : https://www.youtube.com/watch?v=Lns4th5
 ![image](https://user-images.githubusercontent.com/38517925/177982867-7c9db669-8236-468b-94bb-4faf8a8024e7.png)
 ![image](https://user-images.githubusercontent.com/38517925/177983046-0019ec4b-3138-4749-90f9-dd8a954b907d.png)
 ![image](https://user-images.githubusercontent.com/38517925/177983408-64caa9f4-9108-4b0d-90b1-36e9fc415d52.png)
+![image](https://user-images.githubusercontent.com/38517925/178091332-073c47eb-90c4-400c-86cf-0ec9e6c9943b.png)
+![image](https://user-images.githubusercontent.com/38517925/178091339-c0dadd86-e59e-466a-b7bc-fb47183a4333.png)
+![image](https://user-images.githubusercontent.com/38517925/178091345-239072ab-0c68-4e52-a9a6-560707e40dcc.png)
+
 
 
 
