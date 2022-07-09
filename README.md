@@ -44,10 +44,12 @@ Replace the hostnames in "inventory" file present here with hostnames of your en
 
 Step | Description | Commands
 ------ | ----------- | --------
-1 | Download this playbook in your ansible server | # git clone https://github.com/HemantGangwar/kubernetesCluster.git
+1 | Download this playbook in your ansible server | # git clone https://github.com/HemantGangwar/kubernetesClusterRH7.git
 2 | Enter into the directory created | # cd kubernetesCluster
 3 | Update inventory file provided here with your node names. | # vi inventory
+Ex  | ![image](https://user-images.githubusercontent.com/38517925/178091017-187b9d53-fe1d-44b1-ae27-810abceafd54.png) | Sample values
 4 | Update deploy_kubernetes/defaults/main.yml with required parameter | (example) KUBERNETES_MASTER: master.lab.example.com
+Ex | ![image](https://user-images.githubusercontent.com/38517925/178091075-85e105fb-5ea0-4ca3-ba93-3da482e6b083.png) | Sample Values
 5 | Now execute the playbook | # ansible-playbook kubernetes.yml OR ansible-playbook kubernetes.yml -e KUBERNETES_MASTER=master.lab.example.com
 
 
@@ -68,6 +70,8 @@ Execution of playbook can be viewed at : https://www.youtube.com/watch?v=Lns4th5
 ![image](https://user-images.githubusercontent.com/38517925/177982867-7c9db669-8236-468b-94bb-4faf8a8024e7.png)
 ![image](https://user-images.githubusercontent.com/38517925/177983046-0019ec4b-3138-4749-90f9-dd8a954b907d.png)
 ![image](https://user-images.githubusercontent.com/38517925/177983408-64caa9f4-9108-4b0d-90b1-36e9fc415d52.png)
+
+
 
 
 
